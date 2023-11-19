@@ -19,7 +19,7 @@ Author URL: http://w3layouts.com
 <body>
 
     <!-- header -->
-	<div th:replace="~{header :: header}">...</div>
+    <div th:replace="~{header :: header}">...</div>
     <!-- //header -->
 
     <!-- inner banner -->
@@ -48,7 +48,7 @@ Author URL: http://w3layouts.com
                     <ul>
                         <li class="alert alert-danger" role="alert" th:each="error : ${#fields.errors('contact.*')}" th:text="${error}" />
                     </ul>
-                    <form th:action="@{/saveMsg}" method="post" class="signin-form" th:object="${contact}">
+                    <form action="/saveMsg" method="post" class="signin-form" th:object="${contact}">
                         <div class="input-grids">
                             <div class="row">
                                 <div class="col-sm-6">
@@ -127,7 +127,7 @@ Author URL: http://w3layouts.com
     <!-- //contact block -->
 
     <!-- footer block -->
-	<div th:replace="~{footer :: footer}">...</div>
+    <div th:replace="~{footer :: footer}">...</div>
     <!-- //footer block -->
 
     <!-- Js scripts -->
