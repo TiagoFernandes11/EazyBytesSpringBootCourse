@@ -17,7 +17,7 @@ import static org.springframework.security.config.Customizer.withDefaults;
 public class ProjectSecurityConfig {
     @Bean
     SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
-        http.csrf((csrf) -> csrf.disable()).authorizeHttpRequests((requests) -> requests
+        http.csrf((csrf) -> csrf.ignoringRequestMatchers("/saveMsg")).authorizeHttpRequests((requests) -> requests
                         .requestMatchers("", "/", "/home").permitAll()
                         .requestMatchers("/holidays/**").permitAll()
                         .requestMatchers("/contact").permitAll()
@@ -25,11 +25,12 @@ public class ProjectSecurityConfig {
                         .requestMatchers("/courses").permitAll()
                         .requestMatchers("/about").permitAll()
                         .requestMatchers("/login").permitAll()
+                        .requestMatchers("/logout").permitAll()
                         .requestMatchers("/assets/**").permitAll())
                 .formLogin(loginConfigurer -> loginConfigurer.loginPage("/login")
                         .defaultSuccessUrl("/dashboard").failureUrl("/login?error=true").permitAll())
-                .logout(logoutConfigurer -> logoutConfigurer.logoutSuccessUrl("/login?logout=true")
-                        .invalidateHttpSession(true).permitAll())
+//                .logout(logoutConfigurer -> logoutConfigurer.logoutSuccessUrl("/login?logout=true")
+//                        .invalidateHttpSession(true).permitAll())
                 .httpBasic(Customizer.withDefaults());
         http.httpBasic(withDefaults());
         return http.build();
