@@ -55,8 +55,8 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
         }
 
         @RequestMapping(value = "/closeMsg",method = GET)
-        public String closeMsg(@RequestParam int id, Authentication authentication) {
-            contactService.updateMsgStatus(id,authentication.getName());
+        public String closeMsg(@RequestParam int id) {
+            contactService.updateMsgStatus(id);
             return "redirect:/displayMessages";
         }
 
