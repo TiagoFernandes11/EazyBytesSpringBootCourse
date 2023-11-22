@@ -5,12 +5,12 @@ import com.udemy.SimpleSpringWebApplication.model.Roles;
 import com.udemy.SimpleSpringWebApplication.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
@@ -18,27 +18,33 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class EazySchoolAuthenticatorProvider implements AuthenticationProvider {
-
+public class EazySchoolAuthenticatorProvider
+        implements AuthenticationProvider
+{
     @Autowired
     private PersonRepository personRepository;
+
     @Autowired
     private PasswordEncoder passwordEncoder;
 
     @Override
-    public Authentication authenticate(Authentication authentication) throws AuthenticationException {
+    public Authentication authenticate(Authentication authentication)
+            throws AuthenticationException {
         String email = authentication.getName();
-        String password = authentication.getCredentials().toString();
+        String pwd = authentication.getCredentials().toString();
         Person person = personRepository.readByEmail(email);
-        if(person != null && passwordEncoder.matches(password, person.getPwd())){
-            return new UsernamePasswordAuthenticationToken(person.getName(), null, getGrantedAuthorities(person.getRoles()));
+        if(null != person && person.getPersonId()>0 &&
+                passwordEncoder.matches(pwd,person.getPwd())){
+            return new UsernamePasswordAuthenticationToken(
+                    email, null, getGrantedAuthorities(person.getRoles()));
+        }else{
+            throw new BadCredentialsException("Invalid credentials!");
         }
-        return null;
     }
 
-    private List<GrantedAuthority> getGrantedAuthorities(Roles roles){
+    private List<GrantedAuthority> getGrantedAuthorities(Roles roles) {
         List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
-        grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_" + roles.getRoleName()));
+        grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_"+roles.getRoleName()));
         return grantedAuthorities;
     }
 
