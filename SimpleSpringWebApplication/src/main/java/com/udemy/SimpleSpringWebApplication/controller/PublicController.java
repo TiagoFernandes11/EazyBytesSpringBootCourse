@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Slf4j
 @Controller
-@RequestMapping("public")
+@RequestMapping("/public")
 public class PublicController {
 
     @Autowired

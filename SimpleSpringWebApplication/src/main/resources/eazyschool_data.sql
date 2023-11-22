@@ -27,3 +27,7 @@ INSERT INTO `roles` (`role_name`,`created_at`, `created_by`)
 
 INSERT INTO `roles` (`role_name`,`created_at`, `created_by`)
   VALUES ('STUDENT',CURDATE(),'DBA');
+
+--Senha admin
+  INSERT INTO `person` (`name`,`email`,`mobile_number`,`pwd`,`role_id`,`created_at`, `created_by`)
+  VALUES ('Admin','admin@admin.com','3443434343','$2a$12$jk.Xj6xitkh2Y7cw0lwwOuZnbAmLK2I/1bNtMwZeOn7H79g12egO6', 1 ,CURDATE(),'DBA');
