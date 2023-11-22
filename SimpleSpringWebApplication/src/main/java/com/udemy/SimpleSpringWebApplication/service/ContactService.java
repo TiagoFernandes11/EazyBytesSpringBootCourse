@@ -17,10 +17,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
-/*
-@Slf4j, is a Lombok-provided annotation that will automatically generate an SLF4J
-Logger static property in the class at compilation time.
-* */
 @Slf4j
 @Service
 public class ContactService {
@@ -31,7 +27,6 @@ public class ContactService {
     public boolean saveMessageDetails(Contact contact){
         boolean isSaved = false;
         contact.setStatus(EazySchoolConstants.OPEN);
-        contact.setCreatedBy(EazySchoolConstants.ANONYMOUS);
         contact.setCreatedAt(LocalDateTime.now());
         Contact result = contactRepository.save(contact);
         if(contact.getContactId() > 0) {
