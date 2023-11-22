@@ -1,10 +1,9 @@
 package com.udemy.SimpleSpringWebApplication.repository;
 
-import com.udemy.SimpleSpringWebApplication.model.Roles;
+import com.udemy.SimpleSpringWebApplication.model.Address;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface RolesRepository extends JpaRepository<Roles, Integer> {
-    Roles getByRoleName(String roleName);
+public interface AddressRepository extends JpaRepository<Address, Integer> {
 }

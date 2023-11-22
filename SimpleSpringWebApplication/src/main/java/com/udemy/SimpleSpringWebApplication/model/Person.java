@@ -6,7 +6,6 @@ import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 
 import jakarta.persistence.*;
-import org.springframework.boot.autoconfigure.amqp.RabbitConnectionDetails.Address;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
