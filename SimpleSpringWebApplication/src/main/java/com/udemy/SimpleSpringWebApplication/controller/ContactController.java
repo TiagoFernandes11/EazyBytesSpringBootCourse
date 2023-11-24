@@ -25,12 +25,8 @@ import static org.springframework.web.bind.annotation.RequestMethod.POST;
 @Controller
 public class ContactController {
 
-    private final ContactService contactService;
-
     @Autowired
-    public ContactController(ContactService contactService) {
-        this.contactService = contactService;
-    }
+    private ContactService contactService;
 
     @RequestMapping("/contact")
     public String displayContactPage(Model model) {
