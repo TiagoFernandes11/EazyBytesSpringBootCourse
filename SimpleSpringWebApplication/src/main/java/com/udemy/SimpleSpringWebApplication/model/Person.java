@@ -1,5 +1,6 @@
 package com.udemy.SimpleSpringWebApplication.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.udemy.SimpleSpringWebApplication.annotation.FieldsValueMatch;
 import com.udemy.SimpleSpringWebApplication.annotation.PasswordValidator;
 import lombok.Data;
@@ -55,6 +56,7 @@ public class Person extends BaseEntity{
     @NotBlank(message="Password must not be blank")
     @Size(min=5, message="Password must be at least 5 characters long")
     @PasswordValidator
+    @JsonIgnore
     private String pwd;
 
     @NotBlank(message="Confirm Password must not be blank")

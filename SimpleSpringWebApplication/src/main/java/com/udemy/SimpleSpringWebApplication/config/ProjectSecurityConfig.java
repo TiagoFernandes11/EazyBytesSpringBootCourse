@@ -38,6 +38,7 @@ public class ProjectSecurityConfig {
                         .requestMatchers(mvcMatcherBuilder.pattern("")).permitAll()
                         .requestMatchers(mvcMatcherBuilder.pattern("/")).permitAll()
                         .requestMatchers(mvcMatcherBuilder.pattern("/home")).permitAll()
+                        .requestMatchers(mvcMatcherBuilder.pattern("/data-api/**")).permitAll()
                         .requestMatchers(mvcMatcherBuilder.pattern("/holidays/**")).permitAll()
                         .requestMatchers(mvcMatcherBuilder.pattern("/contact")).permitAll()
                         .requestMatchers(mvcMatcherBuilder.pattern("/saveMsg")).permitAll()

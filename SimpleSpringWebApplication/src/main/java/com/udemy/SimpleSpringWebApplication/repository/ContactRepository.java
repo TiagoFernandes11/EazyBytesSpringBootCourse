@@ -17,6 +17,6 @@ public interface ContactRepository extends JpaRepository<Contact, Integer> {
 
     List<Contact> findByStatus(String status);
 
-    Page<Contact> findByStatus(@Param("status") String status, Pageable pageable);
+    Page<Contact> findByStatusIs(@Param("status") String status, Pageable pageable);
 
 }
